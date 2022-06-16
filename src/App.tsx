@@ -1,10 +1,13 @@
-import Heading from './components/Heading';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './routes';
+import Global from './styles/global';
 
 function App() {
   return (
-    <div>
-      <Heading>Hello YouTube</Heading>
-    </div>
+    <BrowserRouter>
+      <Routes />
+      <Global />
+    </BrowserRouter>
   );
 }
 
