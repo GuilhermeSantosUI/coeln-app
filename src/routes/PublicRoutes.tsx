@@ -10,7 +10,7 @@ function useAuth() {
 
 function PublicRoutes() {
   const auth = useAuth();
-  return auth ? <Navigate to="/dashboard" /> : <Outlet />;
+  return auth ? <Navigate to="/main-page" /> : <Outlet />;
 }
 
 export default PublicRoutes;

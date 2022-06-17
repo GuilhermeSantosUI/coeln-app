@@ -1,6 +1,14 @@
 import { Routes as RRDRoutes, Route, Navigate } from 'react-router-dom';
-import Dashboard from '../pages/Dashboard';
+import Components from '../pages/Components';
+import Component from '../pages/Components/Component';
+import Item from '../pages/Items/Item';
+import ItemPlugins from '../pages/Items/Plugins';
+import MainPage from '../pages/MainPage';
+import RequestPlugins from '../pages/Requests/Plugins';
+import Request from '../pages/Requests/Request';
 import SignIn from '../pages/Sign';
+import Students from '../pages/Students';
+import Student from '../pages/Students/Student';
 import ProtectedRoutes from './ProtectedRoutes';
 import PublicRoutes from './PublicRoutes';
 
@@ -10,8 +18,20 @@ function Routes() {
       {/** Protected Routes */}
       {/** Wrap all Route under ProtectedRoutes element */}
       <Route path="/" element={<ProtectedRoutes />}>
-        <Route path="/" element={<Navigate replace to="dashboard" />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/" element={<Navigate replace to="main-page" />} />
+        <Route path="/main-page" element={<MainPage />} />
+
+        <Route path="/request/plugins" element={<RequestPlugins />} />
+        <Route path="/request" element={<Request />} />
+
+        <Route path="/item/plugins" element={<ItemPlugins />} />
+        <Route path="/item" element={<Item />} />
+
+        <Route path="/student" element={<Student />} />
+        <Route path="/students" element={<Students />} />
+
+        <Route path="/component" element={<Component />} />
+        <Route path="/components" element={<Components />} />
       </Route>
 
       {/** Public Routes */}
