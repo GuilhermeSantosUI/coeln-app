@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.input`
-  width: 350px;
+  width: 100%;
+  max-width: 350px;
 
   padding: 16px 20px;
   gap: 10px;

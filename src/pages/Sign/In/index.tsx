@@ -21,7 +21,10 @@ function In() {
   return (
     <C.Content>
       <C.ContentSection>
-        <C.ContentTitle>Vamos fazer login, bem-vindo de volta.</C.ContentTitle>
+        <C.ContentTitle>
+          Vamos fazer login <br />
+          bem-vindo de volta.
+        </C.ContentTitle>
         <C.ContentSubtitle>
           Caso nao se lembre da senha clique no botao de <br />
           recuperar senha abaixo.

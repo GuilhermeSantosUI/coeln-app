@@ -56,10 +56,18 @@ export const ContentSubtitle = styled.p`
 `;
 
 export const ContentForm = styled.form`
+  width: 350px;
+
   display: flex;
+  align-items: center;
   flex-direction: column;
 
   gap: 10px;
+
+  @media only screen and (max-width: 570px) {
+    width: 100%;
+    max-width: 350px;
+  }
 `;
 
 export const FloatingFooter = styled.div`

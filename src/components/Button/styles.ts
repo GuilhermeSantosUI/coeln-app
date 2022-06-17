@@ -31,6 +31,9 @@ const buttonStyleVariations = {
 
 const buttonSizeVariations = {
   larger: css`
+    width: 100%;
+    max-width: 350px;
+
     padding: 16px 32px;
     border-radius: 14px;
 
