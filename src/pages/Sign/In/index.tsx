@@ -12,7 +12,7 @@ function In() {
 
     try {
       localStorage.setItem('user', 'user');
-      navigate('/dashboard');
+      navigate('/main-page');
     } catch (error) {
       console.log(error);
     }
@@ -21,10 +21,7 @@ function In() {
   return (
     <C.Content>
       <C.ContentSection>
-        <C.ContentTitle>
-          Vamos fazer login, bem-vindo <br />
-          de volta. você foi perdido.
-        </C.ContentTitle>
+        <C.ContentTitle>Vamos fazer login, bem-vindo de volta.</C.ContentTitle>
         <C.ContentSubtitle>
           Caso nao se lembre da senha clique no botao de <br />
           recuperar senha abaixo.
@@ -36,7 +33,7 @@ function In() {
         <Input name="password" type="password" placeholder="Senha" />
 
         <Button loading={false} type="submit" size="larger" colorStyle="filled">
-          Recuperar senha
+          Entrar
         </Button>
       </C.ContentForm>
     </C.Content>

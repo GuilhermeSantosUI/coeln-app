@@ -18,6 +18,8 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: relative;
 `;
 
 export const Content = styled.div`
@@ -26,6 +28,16 @@ export const Content = styled.div`
   gap: 10rem;
 
   animation: ${appearFromTop} 1s;
+
+  @media only screen and (max-width: 900px) {
+    flex-direction: column;
+    gap: 4rem;
+
+    text-align: center;
+    overflow: hidden;
+
+    padding: 0 16px;
+  }
 `;
 
 export const ContentSection = styled.section``;
@@ -55,13 +67,19 @@ export const FloatingFooter = styled.div`
   flex-direction: row;
 
   position: absolute;
-  left: 50%;
-  bottom: 35px;
-  transform: translate(-50%, 0%);
+  bottom: 25px;
 
   padding: 10px;
   gap: 25px;
 
   background: #f2f2f2;
   border-radius: 50px;
+
+  @media only screen and (max-width: 570px) {
+    bottom: 0px;
+
+    width: 100%;
+
+    border-radius: 0;
+  }
 `;
