@@ -59,7 +59,7 @@ export const Subtitle = styled.div`
 
 export const RightSeparator = styled.div`
   width: 100%;
-  max-width: 250px;
+  max-width: 280px;
 
   display: flex;
   align-items: center;
