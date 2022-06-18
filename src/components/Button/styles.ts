@@ -47,6 +47,8 @@ const buttonSizeVariations = {
   small: css`
     padding: 6px 16px;
     border-radius: 30px;
+
+    white-space: nowrap;
   `,
 };
 

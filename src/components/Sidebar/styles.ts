@@ -12,7 +12,7 @@ export const Container = styled.header`
   align-items: center;
   gap: 38px;
 
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 1000px) {
     max-width: 100%;
     align-items: center;
     justify-content: center;
