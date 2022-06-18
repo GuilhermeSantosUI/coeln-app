@@ -39,11 +39,11 @@ function MainPage() {
           (res: any) =>
             res.data_devolucao && new Date(res.data_devolucao) < new Date(),
         )
-        .map((appointment: any) => ({
-          ...appointment,
+        .map((request: any) => ({
+          ...request,
           expiredDays: differenceInDays(
             new Date(),
-            new Date(appointment.data_devolucao),
+            new Date(request.data_devolucao),
           ),
         }));
 
@@ -58,11 +58,11 @@ function MainPage() {
           (res: any) =>
             res.data_devolucao && new Date(res.data_devolucao) < new Date(),
         )
-        .map((appointment: any) => ({
-          ...appointment,
+        .map((request: any) => ({
+          ...request,
           expiredDays: differenceInDays(
             new Date(),
-            new Date(appointment.data_devolucao),
+            new Date(request.data_devolucao),
           ),
         })),
     [requests],
