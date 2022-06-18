@@ -1,4 +1,9 @@
 import styled from 'styled-components';
+import { appearFromLeft, appearFromTop } from '../../components/BasePage';
+
+export const SectionContainer = styled.div`
+  animation: ${appearFromLeft} 1s;
+`;
 
 export const Container = styled.div`
   width: 100vw;
@@ -67,4 +72,16 @@ export const AsideHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  animation: ${appearFromTop} 1s;
+`;
+
+export const FakeListItem = styled.div`
+  width: 100%;
+  height: 78px;
+
+  cursor: pointer;
+
+  background: #d9d9d9;
+  border-top: 1px solid #f2f2f2;
 `;
