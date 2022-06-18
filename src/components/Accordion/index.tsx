@@ -40,7 +40,7 @@ function Accordion({ data, handleGoTo, comesFrom, ...rest }: AccordionProps) {
   }
 
   return (
-    <C.Container>
+    <C.AccordionContainer>
       {data.map((item) => (
         <div key={item.id}>
           <C.AccordionHeaderSection
@@ -74,7 +74,7 @@ function Accordion({ data, handleGoTo, comesFrom, ...rest }: AccordionProps) {
           ) : null}
         </div>
       ))}
-    </C.Container>
+    </C.AccordionContainer>
   );
 }
 

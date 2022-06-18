@@ -4,7 +4,7 @@ interface Props {
   unselected: boolean;
 }
 
-export const Container = styled.div`
+export const AccordionContainer = styled.div`
   width: 100%;
   background: #328827;
 `;
