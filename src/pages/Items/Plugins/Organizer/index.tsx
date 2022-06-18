@@ -5,7 +5,7 @@ function Organizer() {
   return (
     <C.SectionContainer>
       <HeaderSection
-        title="Organizador"
+        title="Organizadores"
         subtitle="Coordenadoria de eletrônica"
       />
     </C.SectionContainer>
