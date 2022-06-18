@@ -1,4 +1,5 @@
 import { FiSettings } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 import Accordion from '../../../components/Accordion';
 import {
   Aside,
@@ -9,11 +10,18 @@ import {
 import Header from '../../../components/Header';
 import OptionButton from '../../../components/OptionButton';
 import Goback from '../../../components/Sidebar/Goback';
+import dataItemPlugin from '../../Items/Plugins/data-item-plugin';
 import { FlowSection } from '../../MainPage/styles';
 
 import * as C from '../styles';
 
 function Component() {
+  const navigate = useNavigate();
+
+  function handleGetValue(e: string) {
+    navigate(`/item/plugins/${e}`);
+  }
+
   return (
     <C.Container>
       <Header />
@@ -44,7 +52,7 @@ function Component() {
               </OptionButton>
             </C.AsideHeader>
 
-            <Accordion />
+            <Accordion data={dataItemPlugin} handleGoTo={handleGetValue} />
           </Aside>
         </FlowSection>
       </MainContent>
