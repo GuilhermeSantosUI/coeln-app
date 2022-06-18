@@ -17,6 +17,7 @@ export const HeaderSectionTitle = styled.p`
 `;
 
 export const SectionSubtitle = styled.p`
+  width: 100%;
   font-size: 16px;
   line-height: 24px;
 
