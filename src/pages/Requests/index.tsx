@@ -1,14 +1,21 @@
+import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { FiArrowRight, FiUser } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import { Separator } from '../../components/BasePage';
 import HeaderSection from '../../components/BasePage/HeaderSection';
+import {
+  AvatarContainer,
+  ListContainer,
+  RightSeparator,
+  Subtitle,
+  Title,
+} from '../../components/BasePage/ListComponents';
 import Button from '../../components/Button';
 import OptionButton from '../../components/OptionButton';
-import randomImage from '../../components/RandomImage';
+import handleRandomAvatar from '../../components/RandomImage';
 import api from '../../services/api';
 import { SectionContainer } from '../MainPage/styles';
-import * as C from './styles';
 
 function Requests() {
   const navigate = useNavigate();
@@ -17,19 +24,9 @@ function Requests() {
   useEffect(() => {
     (async function handleGet() {
       const { data } = await api.get('/pedidos');
-
       setRequests(data);
     })();
   }, []);
-
-  function handleRandom() {
-    const customImage =
-      randomImage[Math.floor(Math.random() * randomImage.length)];
-
-    return (
-      <C.StudentImage src={customImage} alt="imagem-randomizada-de-aluno" />
-    );
-  }
 
   return (
     <SectionContainer>
@@ -40,49 +37,37 @@ function Requests() {
       </HeaderSection>
 
       {requests.map((request) => (
-        <C.FakeListItem
+        <ListContainer
           key={request.id}
           onClick={() => navigate(`/request/${request.id}`)}>
-          <C.FirstTest>
-            {handleRandom()}
+          <AvatarContainer>
+            {handleRandomAvatar()}
             <Separator>
-              <C.Subtitle>Pedinte</C.Subtitle>
-              <C.Title>{request.usuario.nome}</C.Title>
+              <Subtitle>Pedinte</Subtitle>
+              <Title>{request.usuario.nome}</Title>
             </Separator>
-          </C.FirstTest>
+          </AvatarContainer>
 
-          <C.DateSection>
+          <RightSeparator>
             {request.data_devolucao ? (
               <>
-                <Button
-                  loading={false}
-                  colorStyle="tined"
-                  size="small"
-                  style={{ margin: 0 }}>
-                  20/04/2022
+                <Button loading={false} colorStyle="tined" size="small">
+                  {moment(request?.data_entregue).format('DD/MM/YYYY')}
                 </Button>
 
                 <FiArrowRight size={20} color="#8c8c8c" />
 
-                <Button
-                  loading={false}
-                  colorStyle="filled"
-                  size="small"
-                  style={{ margin: 0 }}>
-                  20/04/2022
+                <Button loading={false} colorStyle="filled" size="small">
+                  {moment(request?.data_devolucao).format('DD/MM/YYYY')}
                 </Button>
               </>
             ) : (
-              <Button
-                loading={false}
-                colorStyle="tined"
-                size="small"
-                style={{ margin: 0 }}>
+              <Button loading={false} colorStyle="tined" size="small">
                 Sem previsão
               </Button>
             )}
-          </C.DateSection>
-        </C.FakeListItem>
+          </RightSeparator>
+        </ListContainer>
       ))}
     </SectionContainer>
   );
