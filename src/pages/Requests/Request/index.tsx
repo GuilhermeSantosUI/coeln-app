@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { useCallback, useEffect, useState } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   Aside,
   AsideTitle,
@@ -32,6 +32,7 @@ import * as C from '../styles';
 
 function Request() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [request, setRequest] = useState<any>();
 
   useEffect(() => {
@@ -138,7 +139,9 @@ function Request() {
             />
 
             {request?.items.map((item: any) => (
-              <ListContainer key={item.componente.id}>
+              <ListContainer
+                key={item.componente.id}
+                onClick={() => navigate(`/component/${item.componente.id}`)}>
                 <AvatarContainer>
                   {handleRandomAvatar()}
 
