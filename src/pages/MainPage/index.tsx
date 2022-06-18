@@ -1,22 +1,72 @@
+import { useEffect, useMemo, useState } from 'react';
 import { FiX } from 'react-icons/fi';
+import { useParams } from 'react-router-dom';
+import { differenceInDays } from 'date-fns';
 
-import Accordion from '../../components/Accordion';
 import {
   Aside,
   AsideTitle,
   MainContent,
   Section,
+  Separator,
 } from '../../components/BasePage';
 import Header from '../../components/Header';
 import OptionButton from '../../components/OptionButton';
 import Sidebar from '../../components/Sidebar';
 import { useToggle } from '../../hooks/sideToggle';
+import api from '../../services/api';
 import Items from '../Items';
 import Requests from '../Requests';
 import * as C from './styles';
 
 function MainPage() {
-  const { toggle, openSide, setOpenSide } = useToggle();
+  const { params } = useParams();
+  const { toggle, setToggle, openSide, setOpenSide } = useToggle();
+
+  const [requests, setRequests] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (params === 'Items') setToggle(false);
+    if (params === 'Pedidos') setToggle(true);
+  }, [params]);
+
+  useEffect(() => {
+    (async function handleGet() {
+      const { data } = await api.get<any[]>('/pedidos');
+
+      const expiredRequests = data
+        .filter(
+          (res: any) =>
+            res.data_devolucao && new Date(res.data_devolucao) < new Date(),
+        )
+        .map((appointment: any) => ({
+          ...appointment,
+          expiredDays: differenceInDays(
+            new Date(),
+            new Date(appointment.data_devolucao),
+          ),
+        }));
+
+      setRequests(expiredRequests);
+    })();
+  }, []);
+
+  const expiredRequests = useMemo(
+    () =>
+      requests
+        .filter(
+          (res: any) =>
+            res.data_devolucao && new Date(res.data_devolucao) < new Date(),
+        )
+        .map((appointment: any) => ({
+          ...appointment,
+          expiredDays: differenceInDays(
+            new Date(),
+            new Date(appointment.data_devolucao),
+          ),
+        })),
+    [requests],
+  );
 
   return (
     <C.Container>
@@ -34,7 +84,22 @@ function MainPage() {
               data de devolução:
             </AsideTitle>
 
-            <Accordion />
+            <Separator>
+              {expiredRequests.map((request) => (
+                <C.ExpiredRequest
+                  key={request.id}
+                  to={`/student/${request?.usuario.matricula}`}>
+                  <Separator>
+                    <C.Subtitle>
+                      Matricula: {request.usuario.matricula}
+                    </C.Subtitle>
+                    <C.Title>{request.usuario.nome}</C.Title>
+                  </Separator>
+
+                  <C.ForgotDays>há {request.expiredDays} dias</C.ForgotDays>
+                </C.ExpiredRequest>
+              ))}
+            </Separator>
           </Aside>
         </C.FlowSection>
       </MainContent>

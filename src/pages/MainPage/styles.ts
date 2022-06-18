@@ -1,46 +1,11 @@
-import styled, { keyframes } from 'styled-components';
-
-const appearFromLeft = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-`;
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const appearFromRight = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-`;
-
-const appearFromBottom = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-`;
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import {
+  appearFromBottom,
+  appearFromLeft,
+  appearFromRight,
+  fadeIn,
+} from '../../components/BasePage';
 
 export const Container = styled.div`
   width: 100vw;
@@ -131,6 +96,60 @@ export const AdminListContent = styled.div`
 export const AdminSidebarFooter = styled.div`
   font-size: 14px;
   line-height: 18px;
+
+  color: #8c8c8c;
+`;
+
+export const ExpiredRequest = styled(Link)`
+  width: 100%;
+
+  cursor: pointer;
+
+  padding: 15px 25px;
+
+  background: #f2f2f2;
+  border-top: 1px solid #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media only screen and (max-width: 570px) {
+    padding: 15px 10px;
+  }
+`;
+
+export const ForgotDays = styled.div`
+  background: #c91f28;
+  color: #ffffff;
+
+  padding: 6px 16px;
+  border-radius: 30px;
+
+  @media only screen and (max-width: 1200px) {
+    display: none;
+  }
+`;
+
+export const Title = styled.p`
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* after 3 line show ... */
+  -webkit-box-orient: vertical;
+
+  color: #232326;
+`;
+
+export const Subtitle = styled.p`
+  font-size: 12px;
+  line-height: 12px;
+
+  margin-bottom: 6px;
 
   color: #8c8c8c;
 `;
