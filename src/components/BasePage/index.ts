@@ -73,6 +73,8 @@ export const Section = styled.section`
 
   padding: 25px;
 
+  overflow-y: auto;
+
   border-left: 1px solid #f2f2f2;
   border-right: 1px solid #f2f2f2;
 
