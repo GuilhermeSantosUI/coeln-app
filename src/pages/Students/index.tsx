@@ -22,7 +22,7 @@ import Header from '../../components/Header';
 import handleRandomAvatar from '../../components/RandomImage';
 import Goback from '../../components/Sidebar/Goback';
 import api from '../../services/api';
-import { FlowSection } from '../MainPage/styles';
+import { FlowSection, SectionContainer } from '../MainPage/styles';
 import dataRequestPlugin from '../Requests/Plugins/data-request-plugin';
 
 import * as C from './styles';
@@ -51,37 +51,39 @@ function Students() {
 
         <FlowSection>
           <Section>
-            <HeaderSection
-              title="Alunos"
-              subtitle="Lista de items requisitados"
-            />
+            <SectionContainer>
+              <HeaderSection
+                title="Alunos"
+                subtitle="Lista de items requisitados"
+              />
 
-            {students.map((student) => (
-              <ListContainer
-                key={student?.matricula}
-                onClick={() => navigate(`/student/${student?.matricula}`)}>
-                <AvatarContainer>
-                  {handleRandomAvatar()}
+              {students.map((student) => (
+                <ListContainer
+                  key={student?.matricula}
+                  onClick={() => navigate(`/student/${student?.matricula}`)}>
+                  <AvatarContainer>
+                    {handleRandomAvatar()}
 
-                  <Separator>
-                    <Subtitle>Matricula: {student?.matricula}</Subtitle>
-                    <Title>{student.nome}</Title>
-                  </Separator>
-                </AvatarContainer>
+                    <Separator>
+                      <Subtitle>Matricula: {student?.matricula}</Subtitle>
+                      <Title>{student.nome}</Title>
+                    </Separator>
+                  </AvatarContainer>
 
-                <RightSeparator>
-                  <Button loading={false} colorStyle="tined" size="small">
-                    {student?.turma.nome}
-                  </Button>
+                  <RightSeparator>
+                    <Button loading={false} colorStyle="tined" size="small">
+                      {student?.turma.nome}
+                    </Button>
 
-                  <FiArrowRight size={20} color="#8c8c8c" />
+                    <FiArrowRight size={20} color="#8c8c8c" />
 
-                  <Button loading={false} colorStyle="filled" size="small">
-                    {student?.curso.nome}
-                  </Button>
-                </RightSeparator>
-              </ListContainer>
-            ))}
+                    <Button loading={false} colorStyle="filled" size="small">
+                      {student?.curso.nome}
+                    </Button>
+                  </RightSeparator>
+                </ListContainer>
+              ))}
+            </SectionContainer>
           </Section>
 
           <Aside>

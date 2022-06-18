@@ -28,7 +28,7 @@ function Routes() {
 
         <Route path="/item/plugins/:params" element={<ItemPlugins />} />
         <Route path="/item/plugins" element={<ItemPlugins />} />
-        <Route path="/item" element={<Item />} />
+        <Route path="/item/:id" element={<Item />} />
 
         <Route path="/student/:id" element={<Student />} />
         <Route path="/students" element={<Students />} />

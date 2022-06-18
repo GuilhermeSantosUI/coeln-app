@@ -11,7 +11,7 @@ import {
 import HeaderSection from '../../components/BasePage/HeaderSection';
 import Header from '../../components/Header';
 import Goback from '../../components/Sidebar/Goback';
-import { FlowSection } from '../MainPage/styles';
+import { FlowSection, SectionContainer } from '../MainPage/styles';
 import Accordion from '../../components/Accordion';
 import * as C from './styles';
 import dataItemPlugin from '../Items/Plugins/data-item-plugin';
@@ -50,45 +50,47 @@ function Components() {
 
         <FlowSection>
           <Section>
-            <HeaderSection
-              title="Componentes"
-              subtitle="Coordenadoria de eletrônica"
-            />
+            <SectionContainer>
+              <HeaderSection
+                title="Componentes"
+                subtitle="Coordenadoria de eletrônica"
+              />
 
-            {components.map((component) => (
-              <ListContainer
-                key={component.id}
-                onClick={() => navigate(`/component/${component.id}`)}>
-                <AvatarContainer>
-                  {handleRandomAvatar()}
+              {components.map((component) => (
+                <ListContainer
+                  key={component.id}
+                  onClick={() => navigate(`/component/${component.id}`)}>
+                  <AvatarContainer>
+                    {handleRandomAvatar()}
 
-                  <Separator>
-                    <Subtitle>Tipo: {component.tipo.nome}</Subtitle>
-                    <Title>{component.nome}</Title>
-                  </Separator>
-                </AvatarContainer>
-
-                <C.UnityComponent>
-                  {component.observacoes.length !== 0 ? (
                     <Separator>
-                      <Subtitle>Verifique as observações</Subtitle>
-                      <Title>
-                        {component.observacoes.length}{' '}
-                        {component.observacoes.length === 1
-                          ? 'observação'
-                          : 'observações'}
-                      </Title>
+                      <Subtitle>Tipo: {component.tipo.nome}</Subtitle>
+                      <Title>{component.nome}</Title>
                     </Separator>
-                  ) : (
-                    <Title>Não há observações</Title>
-                  )}
+                  </AvatarContainer>
 
-                  <OptionButton>
-                    <FiArrowRight size={20} color="#8c8c8c" />
-                  </OptionButton>
-                </C.UnityComponent>
-              </ListContainer>
-            ))}
+                  <C.UnityComponent>
+                    {component.observacoes.length !== 0 ? (
+                      <Separator>
+                        <Subtitle>Verifique as observações</Subtitle>
+                        <Title>
+                          {component.observacoes.length}{' '}
+                          {component.observacoes.length === 1
+                            ? 'observação'
+                            : 'observações'}
+                        </Title>
+                      </Separator>
+                    ) : (
+                      <Title>Não há observações</Title>
+                    )}
+
+                    <OptionButton>
+                      <FiArrowRight size={20} color="#8c8c8c" />
+                    </OptionButton>
+                  </C.UnityComponent>
+                </ListContainer>
+              ))}
+            </SectionContainer>
           </Section>
 
           <Aside>
