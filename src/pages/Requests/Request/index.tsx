@@ -1,5 +1,6 @@
+import moment from 'moment';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   Aside,
   AsideTitle,
@@ -25,9 +26,25 @@ function Request() {
   useEffect(() => {
     (async function handleGet() {
       const { data } = await api.get(`/pedidos/${id}`);
-      setRequest(data);
+
+      const formatedRequest = {
+        ...data,
+        isExpired:
+          data?.data_devolucao && new Date() > new Date(data?.data_devolucao),
+      };
+
+      setRequest(formatedRequest);
     })();
   }, [id]);
+
+  const handleCalculatePeriod = useCallback(
+    (leftDate: string, rightDate: string) => {
+      const a = moment(new Date(leftDate));
+      const b = moment(new Date(rightDate));
+      return a.diff(b, 'days');
+    },
+    [],
+  );
 
   return (
     <C.Container>
@@ -56,25 +73,49 @@ function Request() {
                 <C.BeggarImage src={ImgBeggar} alt="imagem do pedinte" />
               </C.BeggarContainer>
 
-              <C.PeriodContainer>
+              <C.PeriodContainer isExpired={request?.isExpired}>
                 <C.PeriodHeader>
-                  <C.PeriodTitle>Periodo (2 semanas)</C.PeriodTitle>
+                  <C.PeriodTitle>
+                    {request?.data_devolucao ? (
+                      <>
+                        Periodo (
+                        {handleCalculatePeriod(
+                          request?.data_devolucao,
+                          request?.data_entregue,
+                        )}
+                        ) dias
+                      </>
+                    ) : (
+                      <>Sem previsão</>
+                    )}
+                  </C.PeriodTitle>
+
+                  {request?.isExpired && <C.PeriodTitle>Expirou</C.PeriodTitle>}
                 </C.PeriodHeader>
 
-                <C.PeriodDates>
-                  <C.DateContainer>
-                    <C.DateTitle>
-                      Data de <br />
-                      entrega:
-                    </C.DateTitle>
-                  </C.DateContainer>
-                  <C.DateContainer>
-                    <C.DateTitle>
-                      Data de <br />
-                      devolução:
-                    </C.DateTitle>
-                  </C.DateContainer>
-                </C.PeriodDates>
+                {request?.data_devolucao && (
+                  <C.PeriodDates>
+                    <C.DateContainer>
+                      <C.DateTitle>
+                        Data de <br />
+                        entrega:
+                      </C.DateTitle>
+
+                      <C.Date>
+                        {moment(request?.data_entregue).format('DD/MM/YYYY')}
+                      </C.Date>
+                    </C.DateContainer>
+                    <C.DateContainer>
+                      <C.DateTitle>
+                        Data de <br />
+                        devolução:
+                      </C.DateTitle>
+                      <C.Date>
+                        {moment(request?.data_devolucao).format('DD/MM/YYYY')}
+                      </C.Date>
+                    </C.DateContainer>
+                  </C.PeriodDates>
+                )}
               </C.PeriodContainer>
             </SectionContainer>
           </Aside>
