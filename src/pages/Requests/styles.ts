@@ -150,3 +150,12 @@ export const Date = styled.p`
 
   color: #232326;
 `;
+
+export const UnityComponent = styled.div`
+  width: 100%;
+  max-width: 250px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
