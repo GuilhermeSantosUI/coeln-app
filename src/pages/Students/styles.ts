@@ -75,13 +75,3 @@ export const AsideHeader = styled.header`
 
   animation: ${appearFromTop} 1s;
 `;
-
-export const FakeListItem = styled.div`
-  width: 100%;
-  height: 78px;
-
-  cursor: pointer;
-
-  background: #d9d9d9;
-  border-top: 1px solid #f2f2f2;
-`;
