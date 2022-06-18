@@ -21,7 +21,14 @@ import * as C from './styles';
 
 function MainPage() {
   const { params } = useParams();
-  const { toggle, setToggle, openSide, setOpenSide } = useToggle();
+  const {
+    toggle,
+    setToggle,
+    openSide,
+    setOpenSide,
+    openRecord,
+    setOpenRecord,
+  } = useToggle();
 
   const [requests, setRequests] = useState<any[]>([]);
 
@@ -125,6 +132,29 @@ function MainPage() {
             <C.AdminSidebarFooter>
               Os servidores só podem ser adicionados/excluídos pelo dono do
               servidor.
+            </C.AdminSidebarFooter>
+          </C.AdminSidebar>
+        </C.AdminSidebarContainer>
+      )}
+
+      {openRecord && (
+        <C.AdminSidebarContainer>
+          <C.AdminSidebar>
+            <C.AdminHeader>
+              <C.AdminTitle>Listagem de Histórico</C.AdminTitle>
+
+              <OptionButton onClick={() => setOpenRecord(false)}>
+                <FiX size={20} color="#8C8C8C" />
+              </OptionButton>
+            </C.AdminHeader>
+
+            <C.AdminListContent>
+              <p>Lista de coisas feitas</p>
+            </C.AdminListContent>
+
+            <C.AdminSidebarFooter>
+              Aqui aparecem todas as ações realizadas na aplicação, desde
+              cadastros a remoções.
             </C.AdminSidebarFooter>
           </C.AdminSidebar>
         </C.AdminSidebarContainer>

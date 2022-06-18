@@ -1,9 +1,9 @@
-import { FiCalendar, FiCpu, FiHelpCircle } from 'react-icons/fi';
+import { FiCalendar, FiClock, FiCpu, FiHelpCircle } from 'react-icons/fi';
 import { useToggle } from '../../hooks/sideToggle';
 import * as C from './styles';
 
 function Sidebar() {
-  const { setToggle, setOpenSide } = useToggle();
+  const { setToggle, setOpenSide, setOpenRecord } = useToggle();
 
   return (
     <C.Container>
@@ -29,6 +29,14 @@ function Sidebar() {
         </C.NavIconContainer>
 
         <C.NavTitle>Adms</C.NavTitle>
+      </C.NavButton>
+
+      <C.NavButton to="" onClick={() => setOpenRecord(true)}>
+        <C.NavIconContainer>
+          <FiClock size={20} color="#328827" />
+        </C.NavIconContainer>
+
+        <C.NavTitle>Histórico</C.NavTitle>
       </C.NavButton>
     </C.Container>
   );
