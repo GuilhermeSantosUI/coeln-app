@@ -1,11 +1,13 @@
 import moment from 'moment';
-import { useParams } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
+import { FiArrowRight } from 'react-icons/fi';
+import { useParams } from 'react-router-dom';
 import {
   Aside,
   AsideTitle,
   MainContent,
   Section,
+  Separator,
 } from '../../../components/BasePage';
 
 import Header from '../../../components/Header';
@@ -14,10 +16,19 @@ import Goback from '../../../components/Sidebar/Goback';
 import ImgBeggar from '../../../assets/beggar-ilustration-one.png';
 
 import HeaderSection from '../../../components/BasePage/HeaderSection';
+import {
+  AvatarContainer,
+  ListContainer,
+  Subtitle,
+  Title,
+} from '../../../components/BasePage/ListComponents';
+import Button from '../../../components/Button';
+import OptionButton from '../../../components/OptionButton';
+import handleRandomAvatar from '../../../components/RandomImage';
+import api from '../../../services/api';
 import { FlowSection } from '../../MainPage/styles';
 import { SectionContainer } from '../../Students/styles';
 import * as C from '../styles';
-import api from '../../../services/api';
 
 function Request() {
   const { id } = useParams();
@@ -63,8 +74,8 @@ function Request() {
               </AsideTitle>
 
               <C.BeggarContainer to={`/student/${request?.usuario.matricula}`}>
-                <C.BeggarTitle>Aluno</C.BeggarTitle>
-                <C.SpanName>Nome do aluno:</C.SpanName>
+                <C.BeggarTitle>Pedinte</C.BeggarTitle>
+                <C.SpanName>Nome do pedinte:</C.SpanName>
                 <C.BeggarName>{request?.usuario.nome}</C.BeggarName>
                 <C.Registration>
                   Matricula: {request?.usuario.matricula}
@@ -125,6 +136,29 @@ function Request() {
               title="Componentes"
               subtitle="Lista de items requisitados"
             />
+
+            {request?.items.map((item: any) => (
+              <ListContainer key={item.componente.id}>
+                <AvatarContainer>
+                  {handleRandomAvatar()}
+
+                  <Separator>
+                    <Subtitle>Tipo: {item.componente.tipo.nome}</Subtitle>
+                    <Title>{item.componente.nome}</Title>
+                  </Separator>
+                </AvatarContainer>
+
+                <C.UnityComponent>
+                  <Button loading={false} colorStyle="filled" size="small">
+                    {item.quantidade} Unidades
+                  </Button>
+
+                  <OptionButton>
+                    <FiArrowRight size={20} color="#8c8c8c" />
+                  </OptionButton>
+                </C.UnityComponent>
+              </ListContainer>
+            ))}
           </Section>
         </FlowSection>
       </MainContent>
