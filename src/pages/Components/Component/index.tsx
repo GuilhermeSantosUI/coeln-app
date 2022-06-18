@@ -86,12 +86,20 @@ function Component() {
 
               <ContentSection>
                 <Separator style={{ width: '100%' }}>
-                  {component?.observacoes.map((note: any) => (
-                    <C.NoteContainer key={note?.id}>
-                      <Subtitle>Observação:</Subtitle>
-                      <Title>{note?.texto}</Title>
+                  {component.observacoes.length !== 0 ? (
+                    <div>
+                      {component?.observacoes.map((note: any) => (
+                        <C.NoteContainer key={note?.id}>
+                          <Subtitle>Observação:</Subtitle>
+                          <Title>{note?.texto}</Title>
+                        </C.NoteContainer>
+                      ))}
+                    </div>
+                  ) : (
+                    <C.NoteContainer>
+                      <Title>Não há observações!</Title>
                     </C.NoteContainer>
-                  ))}
+                  )}
                 </Separator>
 
                 <Button
