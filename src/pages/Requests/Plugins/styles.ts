@@ -1,15 +1,5 @@
-import styled, { keyframes } from 'styled-components';
-
-const appearFromLeft = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0px);
-  }
-`;
+import styled from 'styled-components';
+import { appearFromLeft } from '../../../components/BasePage';
 
 export const Container = styled.div`
   width: 100vw;
