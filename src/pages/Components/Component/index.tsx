@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FiMinus, FiSettings } from 'react-icons/fi';
+import { FiEdit3, FiMinus, FiSettings, FiTrash } from 'react-icons/fi';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   AccordionContainer,
@@ -10,6 +10,10 @@ import {
 import {
   Aside,
   AsideTitle,
+  DropDownButton,
+  DropDownItems,
+  DropDownMenuContainer,
+  DropDownTitle,
   MainContent,
   Section,
   Separator,
@@ -29,6 +33,7 @@ function Component() {
   const navigate = useNavigate();
 
   const [component, setComponent] = useState<any>();
+  const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     (async function handleGet() {
@@ -70,9 +75,23 @@ function Component() {
                 sobre o componente:
               </AsideTitle>
 
-              <OptionButton>
-                <FiSettings size={20} color="#8C8C8C" />
-              </OptionButton>
+              <DropDownMenuContainer>
+                <OptionButton onClick={() => setToggle(!toggle)}>
+                  <FiSettings size={20} color="#8C8C8C" />
+                </OptionButton>
+
+                <DropDownItems show={toggle}>
+                  <DropDownButton>
+                    <FiEdit3 size={20} color="#000000" />
+                    <DropDownTitle>Editar</DropDownTitle>
+                  </DropDownButton>
+
+                  <DropDownButton>
+                    <FiTrash size={20} color="#000000" />
+                    <DropDownTitle>Deletar</DropDownTitle>
+                  </DropDownButton>
+                </DropDownItems>
+              </DropDownMenuContainer>
             </C.AsideHeader>
 
             <AccordionContainer>
@@ -86,15 +105,13 @@ function Component() {
 
               <ContentSection>
                 <Separator style={{ width: '100%' }}>
-                  {component.observacoes.length !== 0 ? (
-                    <div>
-                      {component?.observacoes.map((note: any) => (
-                        <C.NoteContainer key={note?.id}>
-                          <Subtitle>Observação:</Subtitle>
-                          <Title>{note?.texto}</Title>
-                        </C.NoteContainer>
-                      ))}
-                    </div>
+                  {component?.observacoes.length !== 0 ? (
+                    component?.observacoes.map((note: any) => (
+                      <C.NoteContainer key={note?.id}>
+                        <Subtitle>Observação:</Subtitle>
+                        <Title>{note?.texto}</Title>
+                      </C.NoteContainer>
+                    ))
                   ) : (
                     <C.NoteContainer>
                       <Title>Não há observações!</Title>
