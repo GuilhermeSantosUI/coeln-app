@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -8,7 +9,7 @@ export const Container = styled.div`
   flex-flow: column;
 `;
 
-export const BeggarContainer = styled.div`
+export const BeggarContainer = styled(Link)`
   width: 100%;
 
   padding: 25px;
@@ -36,9 +37,16 @@ export const SpanName = styled.p`
 `;
 
 export const BeggarName = styled.p`
+  width: 250px;
   font-weight: 500;
   font-size: 24px;
   line-height: 25px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* after 3 line show ... */
+  -webkit-box-orient: vertical;
 
   margin-bottom: 10px;
 
@@ -98,4 +106,70 @@ export const DateTitle = styled.p`
   font-size: 14px;
 
   color: #232326;
+`;
+
+export const StudentImage = styled.img`
+  width: 50px;
+`;
+
+export const FakeListItem = styled.div`
+  width: 100%;
+
+  cursor: pointer;
+
+  padding: 15px 25px;
+
+  background: #f2f2f2;
+  border-top: 1px solid #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media only screen and (max-width: 570px) {
+    padding: 15px 10px;
+  }
+`;
+
+export const FirstTest = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
+
+export const Title = styled.div`
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* after 3 line show ... */
+  -webkit-box-orient: vertical;
+
+  color: #232326;
+`;
+
+export const Subtitle = styled.p`
+  font-size: 12px;
+  line-height: 12px;
+
+  margin-bottom: 6px;
+
+  color: #8c8c8c;
+`;
+
+export const DateSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  @media only screen and (max-width: 1200px) {
+    &:nth-child(2) > button:nth-child(3),
+    svg:nth-child(2) {
+      display: none;
+    }
+  }
 `;
