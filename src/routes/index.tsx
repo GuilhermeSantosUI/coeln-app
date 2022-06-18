@@ -19,15 +19,18 @@ function Routes() {
       {/** Wrap all Route under ProtectedRoutes element */}
       <Route path="/" element={<ProtectedRoutes />}>
         <Route path="/" element={<Navigate replace to="main-page" />} />
+        <Route path="/main-page/:params" element={<MainPage />} />
         <Route path="/main-page" element={<MainPage />} />
 
+        <Route path="/request/plugins/:params" element={<RequestPlugins />} />
         <Route path="/request/plugins" element={<RequestPlugins />} />
-        <Route path="/request" element={<Request />} />
+        <Route path="/request/:id" element={<Request />} />
 
+        <Route path="/item/plugins/:params" element={<ItemPlugins />} />
         <Route path="/item/plugins" element={<ItemPlugins />} />
         <Route path="/item" element={<Item />} />
 
-        <Route path="/student" element={<Student />} />
+        <Route path="/student/:id" element={<Student />} />
         <Route path="/students" element={<Students />} />
 
         <Route path="/component" element={<Component />} />

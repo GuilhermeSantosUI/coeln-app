@@ -1,15 +1,5 @@
-import styled, { keyframes } from 'styled-components';
-
-const appearFromTop = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-`;
+import styled from 'styled-components';
+import { appearFromTop } from '../../components/BasePage';
 
 export const Container = styled.div`
   width: 100vw;
