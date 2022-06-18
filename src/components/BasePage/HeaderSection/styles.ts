@@ -4,8 +4,10 @@ export const Container = styled.header`
   width: 100%;
 
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
 `;
 
 export const Title = styled.h2`
@@ -18,5 +20,6 @@ export const Subtitle = styled.p`
   font-size: 15px;
   line-height: 15px;
 
+  margin-top: 6px;
   color: #8c8c8c;
 `;
