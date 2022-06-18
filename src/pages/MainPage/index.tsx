@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { useEffect, useMemo, useState } from 'react';
 import { FiX } from 'react-icons/fi';
 import { useParams } from 'react-router-dom';
@@ -18,6 +19,12 @@ import api from '../../services/api';
 import Items from '../Items';
 import Requests from '../Requests';
 import * as C from './styles';
+import {
+  ListContainer,
+  Subtitle,
+  Title,
+} from '../../components/BasePage/ListComponents';
+import Button from '../../components/Button';
 
 function MainPage() {
   const { params } = useParams();
@@ -31,11 +38,25 @@ function MainPage() {
   } = useToggle();
 
   const [requests, setRequests] = useState<any[]>([]);
+  const [records, setRecords] = useState<any[]>([]);
 
   useEffect(() => {
     if (params === 'Items') setToggle(false);
     if (params === 'Pedidos') setToggle(true);
   }, [params]);
+
+  useEffect(() => {
+    (async function handleGet() {
+      const { data } = await api.get('/historico');
+
+      const formatedRecords = data.map((record: any) => ({
+        ...record,
+        inserted: record.insercao_delecao === 'inserido',
+      }));
+
+      setRecords(formatedRecords);
+    })();
+  }, [openRecord]);
 
   useEffect(() => {
     (async function handleGet() {
@@ -148,8 +169,24 @@ function MainPage() {
               </OptionButton>
             </C.AdminHeader>
 
-            <C.AdminListContent>
-              <p>Lista de coisas feitas</p>
+            <C.AdminListContent style={{ overflowY: 'auto' }}>
+              {records.map((record: any) => (
+                <ListContainer key={record.id}>
+                  <Separator>
+                    <Subtitle>
+                      Data: {moment(record?.data).format('DD/MM/YYYY')}
+                    </Subtitle>
+                    <Title>Em {record?.nome_tabela}</Title>
+                  </Separator>
+
+                  <Button
+                    loading={false}
+                    colorStyle={record.inserted ? 'tined' : 'filled'}
+                    size="small">
+                    {record?.insercao_delecao}
+                  </Button>
+                </ListContainer>
+              ))}
             </C.AdminListContent>
 
             <C.AdminSidebarFooter>
