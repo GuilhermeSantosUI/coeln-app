@@ -1,25 +1,35 @@
-import { FiSettings } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom';
-import Accordion from '../../../components/Accordion';
+import { useEffect, useState } from 'react';
+import { FiEdit3, FiSettings, FiTrash } from 'react-icons/fi';
+import { useParams } from 'react-router-dom';
 import {
   Aside,
   AsideTitle,
+  DropDownButton,
+  DropDownItems,
+  DropDownMenuContainer,
+  DropDownTitle,
   MainContent,
   Section,
 } from '../../../components/BasePage';
 import Header from '../../../components/Header';
 import OptionButton from '../../../components/OptionButton';
 import Goback from '../../../components/Sidebar/Goback';
+import api from '../../../services/api';
 import { FlowSection } from '../../MainPage/styles';
-import dataItemPlugin from '../Plugins/data-item-plugin';
 import * as C from '../styles';
 
 function Item() {
-  const navigate = useNavigate();
+  const { id } = useParams();
 
-  function handleGetValue(e: string) {
-    navigate(`/item/plugins/${e}`);
-  }
+  const [item, setItem] = useState<any>();
+  const [toggle, setToggle] = useState(false);
+
+  useEffect(() => {
+    (async function handleGet() {
+      const { data } = await api.get(`/itens/${id}`);
+      setItem(data);
+    })();
+  }, [id]);
 
   return (
     <C.Container>
@@ -32,11 +42,15 @@ function Item() {
           <Section>
             <C.WallpaperContainer>
               <C.WallpaperSubtitle>Tipo:</C.WallpaperSubtitle>
-              <C.WallpaperTitle>Capacitor</C.WallpaperTitle>
+              <C.WallpaperTitle>{item?.componente.tipo.nome}</C.WallpaperTitle>
             </C.WallpaperContainer>
 
-            <C.ComponentName>AZ762 220W</C.ComponentName>
-            <C.ComponentAbout>Sem descrição</C.ComponentAbout>
+            <C.ComponentName>{item?.componente.nome}</C.ComponentName>
+            <C.ComponentAbout>
+              {item?.componente.descricao !== '--'
+                ? item?.componente.descricao
+                : 'Sem descricao'}
+            </C.ComponentAbout>
           </Section>
 
           <Aside>
@@ -46,12 +60,24 @@ function Item() {
                 sobre o item:
               </AsideTitle>
 
-              <OptionButton>
-                <FiSettings size={20} color="#8C8C8C" />
-              </OptionButton>
-            </C.AsideHeader>
+              <DropDownMenuContainer>
+                <OptionButton onClick={() => setToggle(!toggle)}>
+                  <FiSettings size={20} color="#8C8C8C" />
+                </OptionButton>
 
-            <Accordion data={dataItemPlugin} handleGoTo={handleGetValue} />
+                <DropDownItems show={toggle}>
+                  <DropDownButton>
+                    <FiEdit3 size={20} color="#000000" />
+                    <DropDownTitle>Editar</DropDownTitle>
+                  </DropDownButton>
+
+                  <DropDownButton>
+                    <FiTrash size={20} color="#000000" />
+                    <DropDownTitle>Deletar</DropDownTitle>
+                  </DropDownButton>
+                </DropDownItems>
+              </DropDownMenuContainer>
+            </C.AsideHeader>
           </Aside>
         </FlowSection>
       </MainContent>
