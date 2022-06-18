@@ -31,7 +31,7 @@ function Note() {
       />
 
       {notes.map((note: any) => (
-        <ListContainer>
+        <ListContainer key={note.id}>
           <AvatarContainer>
             {handleRandomAvatar()}
 

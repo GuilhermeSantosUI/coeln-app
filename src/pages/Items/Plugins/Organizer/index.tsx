@@ -31,7 +31,7 @@ function Organizer() {
       />
 
       {organizers.map((organizer) => (
-        <ListContainer>
+        <ListContainer key={organizer.id}>
           <AvatarContainer>
             {handleRandomAvatar()}
 

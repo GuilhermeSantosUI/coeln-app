@@ -28,7 +28,7 @@ function Type() {
       <HeaderSection title="Tipos" subtitle="Coordenadoria de eletrônica" />
 
       {types.map((type: any) => (
-        <ListContainer>
+        <ListContainer key={type.id}>
           <AvatarContainer>
             {handleRandomAvatar()}
 
