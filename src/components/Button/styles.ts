@@ -39,6 +39,7 @@ const buttonSizeVariations = {
 
     font-weight: 500;
     font-size: 18px;
+    margin-top: 10px;
   `,
   medium: css`
     padding: 10px 22px;
@@ -53,7 +54,6 @@ const buttonSizeVariations = {
 };
 
 export const Container = styled.button<ContainerProps>`
-  margin-top: 10px;
   transition: background 0.2s;
 
   ${(props) => buttonSizeVariations[props.size || 'small']}
