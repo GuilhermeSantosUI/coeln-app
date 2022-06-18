@@ -36,15 +36,21 @@ export const Title = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 1; /* after 3 line show ... */
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 
   color: #232326;
 `;
 
-export const Subtitle = styled.p`
+export const Subtitle = styled.div`
   font-size: 12px;
-  line-height: 12px;
+  line-height: 14px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 
   margin-bottom: 6px;
 
@@ -61,6 +67,8 @@ export const RightSeparator = styled.div`
   gap: 10px;
 
   @media only screen and (max-width: 1200px) {
+    justify-content: flex-end;
+
     &:nth-child(2) > button:nth-child(3),
     svg:nth-child(2) {
       display: none;

@@ -61,10 +61,14 @@ export const MainContent = styled.main`
   height: 100vh;
 
   display: flex;
-  overflow: hidden;
+  overflow-y: hidden;
 
   @media only screen and (max-width: 1000px) {
     flex-direction: column-reverse;
+
+    &:nth-child(2) > div {
+      overflow-y: auto;
+    }
   }
 `;
 
