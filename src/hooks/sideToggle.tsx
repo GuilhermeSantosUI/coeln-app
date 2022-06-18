@@ -16,6 +16,9 @@ interface SideContextData {
 
   openSide: boolean;
   setOpenSide: React.Dispatch<React.SetStateAction<boolean>>;
+
+  openRecord: boolean;
+  setOpenRecord: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SideContext = createContext<SideContextData>({} as SideContextData);
@@ -23,10 +26,18 @@ const SideContext = createContext<SideContextData>({} as SideContextData);
 export function SideProvider({ children }: SideProviderProps) {
   const [toggle, setToggle] = useState(false);
   const [openSide, setOpenSide] = useState(false);
+  const [openRecord, setOpenRecord] = useState(false);
 
   const handleToggle = useMemo(
-    () => ({ toggle, setToggle, openSide, setOpenSide }),
-    [toggle, setToggle, openSide, setOpenSide],
+    () => ({
+      toggle,
+      setToggle,
+      openSide,
+      setOpenSide,
+      openRecord,
+      setOpenRecord,
+    }),
+    [toggle, setToggle, openSide, setOpenSide, openRecord, setOpenRecord],
   );
 
   return (

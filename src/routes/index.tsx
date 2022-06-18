@@ -33,7 +33,7 @@ function Routes() {
         <Route path="/student/:id" element={<Student />} />
         <Route path="/students" element={<Students />} />
 
-        <Route path="/component" element={<Component />} />
+        <Route path="/component/:id" element={<Component />} />
         <Route path="/components" element={<Components />} />
       </Route>
 

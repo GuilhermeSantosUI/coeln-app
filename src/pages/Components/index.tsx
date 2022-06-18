@@ -56,7 +56,9 @@ function Components() {
             />
 
             {components.map((component) => (
-              <ListContainer key={component.id}>
+              <ListContainer
+                key={component.id}
+                onClick={() => navigate(`/component/${component.id}`)}>
                 <AvatarContainer>
                   {handleRandomAvatar()}
 
