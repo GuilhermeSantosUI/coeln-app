@@ -21,8 +21,11 @@ import {
 import { Subtitle, Title } from '../../../components/BasePage/ListComponents';
 import Button from '../../../components/Button';
 import Header from '../../../components/Header';
+import Modal from '../../../components/Modal';
+import ConfirmationModal from '../../../components/Modal/Confirmation';
 import OptionButton from '../../../components/OptionButton';
 import Goback from '../../../components/Sidebar/Goback';
+import useModal from '../../../hooks/modal';
 import api from '../../../services/api';
 import { FlowSection } from '../../MainPage/styles';
 
@@ -31,6 +34,8 @@ import * as C from '../styles';
 function Component() {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const { isShown, handleSwitch } = useModal();
 
   const [component, setComponent] = useState<any>();
   const [toggle, setToggle] = useState(false);
@@ -45,6 +50,8 @@ function Component() {
   function handleGetValue() {
     navigate(`/item/plugins/Observações`);
   }
+
+  function handleRemoveComponent() {}
 
   return (
     <C.Container>
@@ -86,7 +93,7 @@ function Component() {
                     <DropDownTitle>Editar</DropDownTitle>
                   </DropDownButton>
 
-                  <DropDownButton>
+                  <DropDownButton onClick={handleSwitch}>
                     <FiTrash size={20} color="#000000" />
                     <DropDownTitle>Deletar</DropDownTitle>
                   </DropDownButton>
@@ -131,6 +138,19 @@ function Component() {
           </Aside>
         </FlowSection>
       </MainContent>
+
+      <Modal
+        isShown={isShown}
+        hide={handleSwitch}
+        modalContent={
+          <ConfirmationModal
+            onConfirm={handleRemoveComponent}
+            onCancel={() => handleSwitch()}
+            title="Tem certeza?"
+            message="Ao continuar, você estará removendo o componente. Sendo assim, não será possivel velo novamente."
+          />
+        }
+      />
     </C.Container>
   );
 }
