@@ -1,6 +1,7 @@
 import { Routes as RRDRoutes, Route, Navigate } from 'react-router-dom';
 import Components from '../pages/Components';
 import Component from '../pages/Components/Component';
+import Form from '../pages/Form';
 import Item from '../pages/Items/Item';
 import ItemPlugins from '../pages/Items/Plugins';
 import MainPage from '../pages/MainPage';
@@ -35,6 +36,8 @@ function Routes() {
 
         <Route path="/component/:id" element={<Component />} />
         <Route path="/components" element={<Components />} />
+
+        <Route path="/form" element={<Form />} />
       </Route>
 
       {/** Public Routes */}
