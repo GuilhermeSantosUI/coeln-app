@@ -70,3 +70,16 @@ export const UnityComponent = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+
+export const NoteContainer = styled.div`
+  width: 100%;
+  padding: 15px;
+
+  & > div:nth-child(1) {
+    color: #e6f3ef;
+  }
+
+  & > div:nth-child(2) {
+    color: #ffffff;
+  }
+`;

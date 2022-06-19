@@ -36,8 +36,8 @@ function Organizer() {
             {handleRandomAvatar()}
 
             <Separator>
-              <Subtitle>Organizador: </Subtitle>
-              <Title>Laboratório {organizer?.laboratorio.id}</Title>
+              <Subtitle>Organizador: {organizer?.id} </Subtitle>
+              <Title>Laboratório: {organizer?.laboratorio.id}</Title>
             </Separator>
           </AvatarContainer>
 
