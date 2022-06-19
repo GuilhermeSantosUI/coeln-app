@@ -9,17 +9,15 @@ export interface ModalProps {
   isShown: boolean;
   hide: () => void;
   modalContent: ReactNode;
-  headerText?: string;
 }
 
-function Modal({ isShown, hide, modalContent, headerText }: ModalProps) {
+function Modal({ isShown, hide, modalContent }: ModalProps) {
   const modal = (
     <>
       <C.Backdrop />
       <C.Wrapper>
         <C.StyledModal>
           <C.Header>
-            <C.HeaderText>{headerText}</C.HeaderText>
             <OptionButton onClick={hide}>
               <FiX size={20} color="#8c8c8c" />
             </OptionButton>

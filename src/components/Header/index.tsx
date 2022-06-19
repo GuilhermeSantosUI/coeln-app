@@ -42,12 +42,12 @@ function Header() {
       <Modal
         isShown={isShown}
         hide={handleToggle}
-        headerText="Confirmation"
         modalContent={
           <ConfirmationModal
             onConfirm={handleSignOut}
             onCancel={() => handleToggle()}
-            message="Are you sure you want to delete element?"
+            title="Deseja sair?"
+            message="Ao continuar, você será deslogado da aplicação! Apartir daí você terá que se logar novamente pela pagina de login."
           />
         }
       />

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { appearFromTop } from '../BasePage';
 
 export const Wrapper = styled.div`
   position: fixed;
@@ -16,7 +17,7 @@ export const Backdrop = styled.div`
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(217, 217, 217, 0.3);
   z-index: 500;
 `;
 
@@ -25,13 +26,18 @@ export const StyledModal = styled.div`
   background: white;
   position: relative;
   margin: auto;
-  border-radius: 8px;
+
+  animation: ${appearFromTop} 1s;
 `;
 
 export const Header = styled.div`
-  border-radius: 8px 8px 0 0;
   display: flex;
   justify-content: space-between;
+
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
   padding: 0.3rem;
 `;
 
@@ -41,31 +47,47 @@ export const HeaderText = styled.div`
   color: lightgray;
 `;
 
-export const CloseButton = styled.button`
-  font-size: 0.8rem;
-  border: none;
-  border-radius: 3px;
-  margin-left: 0.5rem;
-  background: none;
-  :hover {
-    cursor: pointer;
-  }
-`;
-
 export const Content = styled.div`
-  padding: 10px;
+  padding: 25px;
   max-height: 30rem;
+
   overflow-x: hidden;
   overflow-y: auto;
+
+  text-align: center;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
 `;
 
 export const ConfirmationButtons = styled.div`
+  width: 100%;
+  padding-top: 15px;
+
+  border-top: 1px solid #f2f2f2;
+
   display: flex;
   justify-content: center;
+  gap: 15px;
 `;
 
-export const Message = styled.div`
-  font-size: 0.9rem;
+export const AppIcon = styled.img``;
+
+export const TitleMessage = styled.p`
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 31px;
+
+  color: #232326;
+`;
+
+export const Message = styled.p`
+  width: 320px;
+
   margin-bottom: 10px;
-  text-align: center;
+  line-height: 20px;
+
+  color: #8c8c8c;
 `;
