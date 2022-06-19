@@ -1,9 +1,10 @@
 import moment from 'moment';
 import { useEffect, useState } from 'react';
-import { FiArrowRight, FiUser } from 'react-icons/fi';
+import { FiArrowRight, FiPlus, FiUser } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
-import { Separator } from '../../components/BasePage';
+import { SearchBar, Separator } from '../../components/BasePage';
 import HeaderSection from '../../components/BasePage/HeaderSection';
+import { HeaderSeparator } from '../../components/BasePage/HeaderSection/styles';
 import {
   AvatarContainer,
   ListContainer,
@@ -31,9 +32,17 @@ function Requests() {
   return (
     <SectionContainer>
       <HeaderSection title="Pedidos" subtitle="Coordenadoria de eletrônica">
-        <OptionButton onClick={() => navigate('/students')}>
-          <FiUser size={20} color="#8C8C8C" />
-        </OptionButton>
+        <HeaderSeparator>
+          <SearchBar placeholder="Nome, matricula, data..." />
+
+          <OptionButton onClick={() => navigate('/students')}>
+            <FiPlus size={20} color="#8C8C8C" />
+          </OptionButton>
+
+          <OptionButton onClick={() => navigate('/students')}>
+            <FiUser size={20} color="#8C8C8C" />
+          </OptionButton>
+        </HeaderSeparator>
       </HeaderSection>
 
       {requests.map((request) => (
@@ -48,8 +57,8 @@ function Requests() {
             </Separator>
           </AvatarContainer>
 
-          <RightSeparator>
-            {request.data_devolucao ? (
+          {request.data_devolucao ? (
+            <RightSeparator>
               <>
                 <Button loading={false} colorStyle="tined" size="small">
                   {moment(request?.data_entregue).format('DD/MM/YYYY')}
@@ -61,12 +70,12 @@ function Requests() {
                   {moment(request?.data_devolucao).format('DD/MM/YYYY')}
                 </Button>
               </>
-            ) : (
-              <Button loading={false} colorStyle="tined" size="small">
-                Sem previsão
-              </Button>
-            )}
-          </RightSeparator>
+            </RightSeparator>
+          ) : (
+            <Button loading={false} colorStyle="tined" size="small">
+              Sem previsão
+            </Button>
+          )}
         </ListContainer>
       ))}
     </SectionContainer>

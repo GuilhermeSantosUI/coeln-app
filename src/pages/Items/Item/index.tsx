@@ -21,8 +21,11 @@ import {
 import { Subtitle, Title } from '../../../components/BasePage/ListComponents';
 import Button from '../../../components/Button';
 import Header from '../../../components/Header';
+import Modal from '../../../components/Modal';
+import ConfirmationModal from '../../../components/Modal/Confirmation';
 import OptionButton from '../../../components/OptionButton';
 import Goback from '../../../components/Sidebar/Goback';
+import useModal from '../../../hooks/modal';
 import api from '../../../services/api';
 import { FlowSection } from '../../MainPage/styles';
 import * as C from '../styles';
@@ -30,6 +33,7 @@ import * as C from '../styles';
 function Item() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { isShown, handleSwitch } = useModal();
 
   const [item, setItem] = useState<any>();
   const [toggle, setToggle] = useState(false);
@@ -49,6 +53,8 @@ function Item() {
   function handleGoToOrganizers() {
     navigate(`/item/plugins/Organizadores`);
   }
+
+  function handleRemoveItem() {}
 
   function handleToggle(pluginId: string) {
     setSelected(pluginId);
@@ -94,7 +100,7 @@ function Item() {
                     <DropDownTitle>Editar</DropDownTitle>
                   </DropDownButton>
 
-                  <DropDownButton>
+                  <DropDownButton onClick={handleSwitch}>
                     <FiTrash size={20} color="#000000" />
                     <DropDownTitle>Deletar</DropDownTitle>
                   </DropDownButton>
@@ -173,6 +179,19 @@ function Item() {
           </Aside>
         </FlowSection>
       </MainContent>
+
+      <Modal
+        isShown={isShown}
+        hide={handleSwitch}
+        modalContent={
+          <ConfirmationModal
+            onConfirm={handleRemoveItem}
+            onCancel={() => handleSwitch()}
+            title="Tem certeza?"
+            message="Ao continuar, você estará removendo o item. Sendo assim, não será possivel velo novamente."
+          />
+        }
+      />
     </C.Container>
   );
 }

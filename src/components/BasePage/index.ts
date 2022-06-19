@@ -134,8 +134,6 @@ export const DropDownItems = styled.div<DropDownItemsProps>`
   opacity: 0;
   visibility: hidden;
 
-  border-radius: 6px;
-
   background: #fece0c;
   padding: 10px;
 
@@ -160,8 +158,6 @@ export const DropDownButton = styled.button`
   gap: 10px;
 
   padding: 8px;
-
-  border-radius: 6px;
   background: #fece0c;
 
   &:hover {
@@ -171,4 +167,13 @@ export const DropDownButton = styled.button`
 
 export const DropDownTitle = styled.p`
   color: #000000;
+`;
+
+export const SearchBar = styled.input`
+  padding: 11px 16px;
+  gap: 10px;
+
+  font-size: 14px;
+
+  border: 1px solid #dadada;
 `;

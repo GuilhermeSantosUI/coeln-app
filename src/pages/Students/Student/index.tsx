@@ -24,10 +24,15 @@ import { FlowSection } from '../../MainPage/styles';
 import * as C from '../styles';
 import dataStudent from './data-student';
 import api from '../../../services/api';
+import Modal from '../../../components/Modal';
+import ConfirmationModal from '../../../components/Modal/Confirmation';
+import useModal from '../../../hooks/modal';
 
 function Student() {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const { isShown, handleSwitch } = useModal();
 
   const [toggle, setToggle] = useState(false);
   const [user, setUser] = useState<any>();
@@ -42,6 +47,8 @@ function Student() {
   function handleGetValue(e: string) {
     navigate(`/main-page/${e.split(' ')[0]}`);
   }
+
+  function handleRemoveStudant() {}
 
   return (
     <C.Container>
@@ -85,7 +92,7 @@ function Student() {
                     <DropDownTitle>Editar</DropDownTitle>
                   </DropDownButton>
 
-                  <DropDownButton>
+                  <DropDownButton onClick={handleSwitch}>
                     <FiTrash size={20} color="#000000" />
                     <DropDownTitle>Deletar</DropDownTitle>
                   </DropDownButton>
@@ -97,6 +104,19 @@ function Student() {
           </Aside>
         </FlowSection>
       </MainContent>
+
+      <Modal
+        isShown={isShown}
+        hide={handleSwitch}
+        modalContent={
+          <ConfirmationModal
+            onConfirm={handleRemoveStudant}
+            onCancel={() => handleSwitch()}
+            title="Tem certeza?"
+            message="Ao continuar, você estará removendo o aluno. Sendo assim, não será possivel velo novamente."
+          />
+        }
+      />
     </C.Container>
   );
 }

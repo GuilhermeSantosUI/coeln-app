@@ -8,12 +8,16 @@ import {
   Subtitle,
   Title,
 } from '../../../../components/BasePage/ListComponents';
+import Modal from '../../../../components/Modal';
+import ConfirmationModal from '../../../../components/Modal/Confirmation';
 import OptionButton from '../../../../components/OptionButton';
 import handleRandomAvatar from '../../../../components/RandomImage';
+import useModal from '../../../../hooks/modal';
 import api from '../../../../services/api';
 import * as C from '../styles';
 
 function Note() {
+  const { isShown, handleSwitch } = useModal();
   const [notes, setNotes] = useState<any[]>([]);
 
   useEffect(() => {
@@ -22,6 +26,8 @@ function Note() {
       setNotes(data);
     })();
   }, []);
+
+  function handleRemoveNote() {}
 
   return (
     <C.SectionContainer>
@@ -46,12 +52,25 @@ function Note() {
               <FiEdit3 size={20} color="#8c8c8c" />
             </OptionButton>
 
-            <OptionButton>
+            <OptionButton onClick={handleSwitch}>
               <FiTrash size={20} color="#8c8c8c" />
             </OptionButton>
           </Separator>
         </ListContainer>
       ))}
+
+      <Modal
+        isShown={isShown}
+        hide={handleSwitch}
+        modalContent={
+          <ConfirmationModal
+            onConfirm={handleRemoveNote}
+            onCancel={() => handleSwitch()}
+            title="Tem certeza?"
+            message="Ao continuar, você estará removendo a observação. Sendo assim, não será possivel velo novamente."
+          />
+        }
+      />
     </C.SectionContainer>
   );
 }

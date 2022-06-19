@@ -8,12 +8,16 @@ import {
   Subtitle,
   Title,
 } from '../../../../components/BasePage/ListComponents';
+import Modal from '../../../../components/Modal';
+import ConfirmationModal from '../../../../components/Modal/Confirmation';
 import OptionButton from '../../../../components/OptionButton';
 import handleRandomAvatar from '../../../../components/RandomImage';
+import useModal from '../../../../hooks/modal';
 import api from '../../../../services/api';
 import * as C from '../styles';
 
 function Organizer() {
+  const { isShown, handleSwitch } = useModal();
   const [organizers, setOrganizers] = useState<any[]>([]);
 
   useEffect(() => {
@@ -23,13 +27,14 @@ function Organizer() {
     })();
   }, []);
 
+  function handleRemoveOrganizer() {}
+
   return (
     <C.SectionContainer>
       <HeaderSection
         title="Organizadores"
         subtitle="Coordenadoria de eletrônica"
       />
-
       {organizers.map((organizer) => (
         <ListContainer key={organizer.id}>
           <AvatarContainer>
@@ -46,12 +51,24 @@ function Organizer() {
               <FiEdit3 size={20} color="#8c8c8c" />
             </OptionButton>
 
-            <OptionButton>
+            <OptionButton onClick={handleSwitch}>
               <FiTrash size={20} color="#8c8c8c" />
             </OptionButton>
           </Separator>
         </ListContainer>
       ))}
+      <Modal
+        isShown={isShown}
+        hide={handleSwitch}
+        modalContent={
+          <ConfirmationModal
+            onConfirm={handleRemoveOrganizer}
+            onCancel={() => handleSwitch()}
+            title="Tem certeza?"
+            message="Ao continuar, você estará removendo este organizador. Sendo assim, não será possivel velo novamente."
+          />
+        }
+      />
     </C.SectionContainer>
   );
 }

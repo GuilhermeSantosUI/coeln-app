@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
-import { FiArrowRight } from 'react-icons/fi';
+import { FiArrowRight, FiPlus } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import Accordion from '../../components/Accordion';
 import {
   Aside,
   AsideTitle,
   MainContent,
+  SearchBar,
   Section,
   Separator,
 } from '../../components/BasePage';
 import HeaderSection from '../../components/BasePage/HeaderSection';
+import { HeaderSeparator } from '../../components/BasePage/HeaderSection/styles';
 import {
   AvatarContainer,
   ListContainer,
@@ -19,6 +21,7 @@ import {
 } from '../../components/BasePage/ListComponents';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
+import OptionButton from '../../components/OptionButton';
 import handleRandomAvatar from '../../components/RandomImage';
 import Goback from '../../components/Sidebar/Goback';
 import api from '../../services/api';
@@ -54,8 +57,14 @@ function Students() {
             <SectionContainer>
               <HeaderSection
                 title="Alunos"
-                subtitle="Lista de items requisitados"
-              />
+                subtitle="Lista de items requisitados">
+                <HeaderSeparator>
+                  <SearchBar placeholder="Nome, matricula, curso..." />
+                  <OptionButton onClick={() => navigate('/form')}>
+                    <FiPlus size={20} color="#8C8C8C" />
+                  </OptionButton>
+                </HeaderSeparator>
+              </HeaderSection>
 
               {students.map((student) => (
                 <ListContainer

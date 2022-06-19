@@ -16,7 +16,7 @@ function SignIn() {
         <Button
           loading={false}
           size="medium"
-          colorStyle="filled"
+          colorStyle={!value ? 'tined' : 'filled'}
           onClick={() => setValue(true)}>
           Logar no App
         </Button>
@@ -24,7 +24,7 @@ function SignIn() {
         <Button
           loading={false}
           size="medium"
-          colorStyle="tined"
+          colorStyle={value ? 'tined' : 'filled'}
           onClick={() => setValue(false)}>
           Recuperar senha
         </Button>

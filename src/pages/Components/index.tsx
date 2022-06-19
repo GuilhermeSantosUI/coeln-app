@@ -1,10 +1,11 @@
-import { FiArrowRight } from 'react-icons/fi';
+import { FiArrowRight, FiPlus } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Aside,
   AsideTitle,
   MainContent,
+  SearchBar,
   Section,
   Separator,
 } from '../../components/BasePage';
@@ -24,6 +25,7 @@ import {
 } from '../../components/BasePage/ListComponents';
 import handleRandomAvatar from '../../components/RandomImage';
 import OptionButton from '../../components/OptionButton';
+import { HeaderSeparator } from '../../components/BasePage/HeaderSection/styles';
 
 function Components() {
   const navigate = useNavigate();
@@ -53,8 +55,14 @@ function Components() {
             <SectionContainer>
               <HeaderSection
                 title="Componentes"
-                subtitle="Coordenadoria de eletrônica"
-              />
+                subtitle="Listagem de componentes">
+                <HeaderSeparator>
+                  <SearchBar placeholder="Nome, tipo..." />
+                  <OptionButton onClick={() => navigate('/form')}>
+                    <FiPlus size={20} color="#8C8C8C" />
+                  </OptionButton>
+                </HeaderSeparator>
+              </HeaderSection>
 
               {components.map((component) => (
                 <ListContainer

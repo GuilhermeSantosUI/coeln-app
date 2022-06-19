@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { FiArrowRight, FiCpu } from 'react-icons/fi';
+import { FiArrowRight, FiCpu, FiPlus } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
-import { Separator } from '../../components/BasePage';
+import { SearchBar, Separator } from '../../components/BasePage';
 import HeaderSection from '../../components/BasePage/HeaderSection';
+import { HeaderSeparator } from '../../components/BasePage/HeaderSection/styles';
 import {
   AvatarContainer,
   ListContainer,
@@ -32,9 +33,17 @@ function Items() {
   return (
     <C.SectionContainer>
       <HeaderSection title="Items" subtitle="Coordenadoria de eletrônica">
-        <OptionButton onClick={() => navigate('/components')}>
-          <FiCpu size={20} color="#8C8C8C" />
-        </OptionButton>
+        <HeaderSeparator>
+          <SearchBar placeholder="Nome, Laboratório..." />
+
+          <OptionButton onClick={() => navigate('/form')}>
+            <FiPlus size={20} color="#8C8C8C" />
+          </OptionButton>
+
+          <OptionButton onClick={() => navigate('/components')}>
+            <FiCpu size={20} color="#8C8C8C" />
+          </OptionButton>
+        </HeaderSeparator>
       </HeaderSection>
 
       {items.map((item) => (

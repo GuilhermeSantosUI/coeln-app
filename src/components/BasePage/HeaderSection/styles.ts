@@ -23,3 +23,10 @@ export const Subtitle = styled.p`
   margin-top: 6px;
   color: #8c8c8c;
 `;
+
+export const HeaderSeparator = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+`;

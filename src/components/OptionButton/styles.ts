@@ -7,7 +7,6 @@ export const Container = styled.button`
 
   padding: 8px;
 
-  border-radius: 6px;
   background: transparent;
 
   transition: background 0.2s;

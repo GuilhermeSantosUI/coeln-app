@@ -8,12 +8,16 @@ import {
   Subtitle,
   Title,
 } from '../../../../components/BasePage/ListComponents';
+import Modal from '../../../../components/Modal';
+import ConfirmationModal from '../../../../components/Modal/Confirmation';
 import OptionButton from '../../../../components/OptionButton';
 import handleRandomAvatar from '../../../../components/RandomImage';
+import useModal from '../../../../hooks/modal';
 import api from '../../../../services/api';
 import * as C from '../styles';
 
 function Course() {
+  const { isShown, handleSwitch } = useModal();
   const [courses, setCourses] = useState<any[]>([]);
 
   useEffect(() => {
@@ -22,6 +26,8 @@ function Course() {
       setCourses(data);
     })();
   }, []);
+
+  function handleRemoveCourse() {}
 
   return (
     <C.SectionContainer>
@@ -43,12 +49,25 @@ function Course() {
               <FiEdit3 size={20} color="#8c8c8c" />
             </OptionButton>
 
-            <OptionButton>
+            <OptionButton onClick={handleSwitch}>
               <FiTrash size={20} color="#8c8c8c" />
             </OptionButton>
           </Separator>
         </ListContainer>
       ))}
+
+      <Modal
+        isShown={isShown}
+        hide={handleSwitch}
+        modalContent={
+          <ConfirmationModal
+            onConfirm={handleRemoveCourse}
+            onCancel={() => handleSwitch()}
+            title="Tem certeza?"
+            message="Ao continuar, você estará removendo este curso. Sendo assim, não será possivel velo novamente."
+          />
+        }
+      />
     </C.SectionContainer>
   );
 }

@@ -3,13 +3,13 @@ import { useState } from 'react';
 function useModal() {
   const [isShown, setIsShown] = useState<boolean>(false);
 
-  function handleToggle() {
+  function handleSwitch() {
     setIsShown(!isShown);
   }
 
   return {
     isShown,
-    handleToggle,
+    handleSwitch,
   };
 }
 
