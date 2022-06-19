@@ -9,11 +9,11 @@ import * as C from './styles';
 
 function Header() {
   const navigate = useNavigate();
-  const { isShown, handleToggle } = useModal();
+  const { isShown, handleSwitch } = useModal();
 
   async function handleSignOut() {
     localStorage.removeItem('user');
-    handleToggle();
+    handleSwitch();
     navigate('/login');
   }
 
@@ -34,18 +34,18 @@ function Header() {
           <C.Username>Guilherme Santos</C.Username>
         </Separator>
 
-        <OptionButton onClick={handleToggle}>
+        <OptionButton onClick={handleSwitch}>
           <FiPower size={20} color="#8C8C8C" />
         </OptionButton>
       </C.HeaderLeftSide>
 
       <Modal
         isShown={isShown}
-        hide={handleToggle}
+        hide={handleSwitch}
         modalContent={
           <ConfirmationModal
             onConfirm={handleSignOut}
-            onCancel={() => handleToggle()}
+            onCancel={() => handleSwitch()}
             title="Deseja sair?"
             message="Ao continuar, você será deslogado da aplicação! Apartir daí você terá que se logar novamente pela pagina de login."
           />
