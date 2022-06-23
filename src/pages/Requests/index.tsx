@@ -35,7 +35,7 @@ function Requests() {
         <HeaderSeparator>
           <SearchBar placeholder="Nome, matricula, data..." />
 
-          <OptionButton onClick={() => navigate('/students')}>
+          <OptionButton onClick={() => navigate('/form')}>
             <FiPlus size={20} color="#8C8C8C" />
           </OptionButton>
 
