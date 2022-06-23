@@ -1,3 +1,4 @@
+import { ButtonHTMLAttributes } from 'react';
 import { FiMenu, FiPower } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import useModal from '../../hooks/modal';
@@ -7,7 +8,9 @@ import ConfirmationModal from '../Modal/Confirmation';
 import OptionButton from '../OptionButton';
 import * as C from './styles';
 
-function Header() {
+interface HeaderProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
+
+function Header({ ...rest }: HeaderProps) {
   const navigate = useNavigate();
   const { isShown, handleSwitch } = useModal();
 
@@ -20,7 +23,9 @@ function Header() {
   return (
     <C.Container>
       <C.HeaderLeftSide>
-        <FiMenu size={24} color="#D9D9D9" />
+        <C.TouchArea {...rest}>
+          <FiMenu size={24} color="#D9D9D9" />
+        </C.TouchArea>
 
         <Separator>
           <C.Logo>COELN</C.Logo>
@@ -28,7 +33,7 @@ function Header() {
         </Separator>
       </C.HeaderLeftSide>
 
-      <C.HeaderLeftSide>
+      <C.HeaderRightSide>
         <Separator>
           <C.Subtitle>Bem vindo novamente,</C.Subtitle>
           <C.Username>Guilherme Santos</C.Username>
@@ -37,7 +42,7 @@ function Header() {
         <OptionButton onClick={handleSwitch}>
           <FiPower size={20} color="#8C8C8C" />
         </OptionButton>
-      </C.HeaderLeftSide>
+      </C.HeaderRightSide>
 
       <Modal
         isShown={isShown}

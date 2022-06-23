@@ -40,6 +40,8 @@ function MainPage() {
   const [requests, setRequests] = useState<any[]>([]);
   const [records, setRecords] = useState<any[]>([]);
 
+  const [appearSide, setAppearSide] = useState<boolean>(false);
+
   useEffect(() => {
     if (params === 'Items') setToggle(false);
     if (params === 'Pedidos') setToggle(true);
@@ -79,6 +81,16 @@ function MainPage() {
     })();
   }, []);
 
+  function handleMakeAnotherSideAppear() {
+    if (window.matchMedia('(max-width: 570px)').matches) {
+      setAppearSide((oldValue) => !oldValue);
+    }
+  }
+
+  useEffect(() => {
+    handleMakeAnotherSideAppear();
+  }, [window.matchMedia]);
+
   const expiredRequests = useMemo(
     () =>
       requests
@@ -98,15 +110,17 @@ function MainPage() {
 
   return (
     <C.Container>
-      <Header />
+      <Header onClick={handleMakeAnotherSideAppear} />
 
       <MainContent>
         <Sidebar />
 
         <C.FlowSection>
-          <Section>{toggle ? <Requests /> : <Items />}</Section>
+          <Section toggle={appearSide}>
+            {toggle ? <Requests /> : <Items />}
+          </Section>
 
-          <Aside>
+          <Aside toggle={appearSide}>
             <AsideTitle>
               Expiraram da <br />
               data de devolução:

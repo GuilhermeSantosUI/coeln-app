@@ -15,9 +15,28 @@ export const HeaderLeftSide = styled.div`
   gap: 32px;
 
   @media screen and (max-width: 570px) {
-    &:nth-child(1) > div {
+    & > :nth-child(2) {
       display: none;
     }
+  }
+`;
+
+export const HeaderRightSide = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 32px;
+`;
+
+export const TouchArea = styled.button`
+  padding: 4px;
+  background-color: transparent;
+  cursor: auto;
+
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: 570px) {
+    cursor: pointer;
   }
 `;
 

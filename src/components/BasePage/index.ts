@@ -72,7 +72,11 @@ export const MainContent = styled.main`
   }
 `;
 
-export const Section = styled.section`
+interface SwitchProps {
+  toggle?: boolean;
+}
+
+export const Section = styled.section<SwitchProps>`
   width: 60%;
 
   padding: 25px;
@@ -88,21 +92,41 @@ export const Section = styled.section`
 
   @media only screen and (max-width: 570px) {
     width: 100%;
+    padding: 15px;
     border: 0;
   }
+
+  ${(props) =>
+    props.toggle &&
+    css`
+      @media only screen and (max-width: 570px) {
+        display: none;
+      }
+    `}
 `;
 
-export const Aside = styled.aside`
+export const Aside = styled.aside<SwitchProps>`
   width: 40%;
   padding: 25px;
 
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 25px;
 
   @media only screen and (max-width: 570px) {
-    display: none;
+    width: 100%;
+    padding: 15px;
+
+    animation: ${appearFromLeft} 1s;
   }
+
+  ${(props) =>
+    !props.toggle &&
+    css`
+      @media only screen and (max-width: 570px) {
+        display: none;
+      }
+    `}
 `;
 
 export const AsideTitle = styled.p`
@@ -176,4 +200,8 @@ export const SearchBar = styled.input`
   font-size: 14px;
 
   border: 1px solid #dadada;
+
+  @media only screen and (max-width: 500px) {
+    display: none;
+  }
 `;
