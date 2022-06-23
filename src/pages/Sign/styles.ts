@@ -1,3 +1,4 @@
+import { Form } from '@unform/web';
 import styled from 'styled-components';
 import { appearFromTop } from '../../components/BasePage';
 
@@ -45,7 +46,7 @@ export const ContentSubtitle = styled.p`
   color: #8c8c8c;
 `;
 
-export const ContentForm = styled.form`
+export const ContentForm = styled(Form)`
   width: 350px;
 
   display: flex;

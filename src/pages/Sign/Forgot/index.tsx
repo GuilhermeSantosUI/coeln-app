@@ -1,21 +1,26 @@
-import { FormEvent, useState } from 'react';
+import { FormHandles } from '@unform/core';
+import { useCallback, useRef, useState } from 'react';
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
 
 import * as C from '../styles';
 
+interface ForgotPasswordProps {
+  email: string;
+}
+
 function Forgot() {
+  const formRef = useRef<FormHandles>(null);
   const [email, setEmail] = useState('');
 
-  async function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-
+  const handleSubmit = useCallback(async (data: ForgotPasswordProps) => {
     try {
+      console.log(data);
       console.log(`Um email foi enviado para: ${email} `);
     } catch (error) {
       console.log(error);
     }
-  }
+  }, []);
 
   return (
     <C.Content>
@@ -30,7 +35,7 @@ function Forgot() {
         </C.ContentSubtitle>
       </C.ContentSection>
 
-      <C.ContentForm onSubmit={handleSubmit}>
+      <C.ContentForm ref={formRef} onSubmit={handleSubmit}>
         <Input
           name="email"
           type="email"

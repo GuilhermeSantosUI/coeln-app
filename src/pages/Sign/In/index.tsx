@@ -1,22 +1,28 @@
-import { FormEvent } from 'react';
+import { FormHandles } from '@unform/core';
+import { useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
 import * as C from '../styles';
 
+interface SignInProps {
+  email: string;
+  password: string;
+}
+
 function In() {
+  const formRef = useRef<FormHandles>(null);
   const navigate = useNavigate();
 
-  async function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-
+  const handleSubmit = useCallback(async (data: SignInProps) => {
     try {
+      console.log(data);
       localStorage.setItem('user', 'user');
       navigate('/main-page');
     } catch (error) {
       console.log(error);
     }
-  }
+  }, []);
 
   return (
     <C.Content>
@@ -31,7 +37,7 @@ function In() {
         </C.ContentSubtitle>
       </C.ContentSection>
 
-      <C.ContentForm onSubmit={handleSubmit}>
+      <C.ContentForm ref={formRef} onSubmit={handleSubmit}>
         <Input name="email" type="email" placeholder="Email ou matricula" />
         <Input name="password" type="password" placeholder="Senha" />
 
