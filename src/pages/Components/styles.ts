@@ -62,15 +62,6 @@ export const AsideHeader = styled.header`
   justify-content: space-between;
 `;
 
-export const UnityComponent = styled.div`
-  width: 100%;
-  max-width: 250px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
 export const NoteContainer = styled.div`
   width: 100%;
   padding: 15px;

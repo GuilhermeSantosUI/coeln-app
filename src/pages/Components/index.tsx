@@ -26,6 +26,7 @@ import {
 import handleRandomAvatar from '../../components/RandomImage';
 import OptionButton from '../../components/OptionButton';
 import { HeaderSeparator } from '../../components/BasePage/HeaderSection/styles';
+import { UnityComponent } from '../Items/styles';
 
 function Components() {
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ function Components() {
                     </Separator>
                   </AvatarContainer>
 
-                  <C.UnityComponent>
+                  <UnityComponent>
                     {component.observacoes.length !== 0 ? (
                       <Separator>
                         <Subtitle>Verifique as observações</Subtitle>
@@ -95,7 +96,7 @@ function Components() {
                     <OptionButton>
                       <FiArrowRight size={20} color="#8c8c8c" />
                     </OptionButton>
-                  </C.UnityComponent>
+                  </UnityComponent>
                 </ListContainer>
               ))}
             </SectionContainer>
