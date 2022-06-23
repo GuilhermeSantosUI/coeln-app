@@ -1,3 +1,4 @@
+import { FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Separator } from '../../components/BasePage';
 import Button from '../../components/Button';
@@ -7,6 +8,10 @@ import * as C from './styles';
 
 function Form() {
   const navigate = useNavigate();
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+  }
 
   return (
     <C.Container>
@@ -20,7 +25,7 @@ function Form() {
           </C.Subtitle>
         </Separator>
 
-        <C.FormContainer>
+        <C.FormContainer onSubmit={handleSubmit}>
           <Input name="gu" placeholder="Teste de cadastro" />
 
           <Input name="gu" placeholder="Teste de cadastro" />
