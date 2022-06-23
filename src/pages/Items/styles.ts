@@ -69,6 +69,12 @@ export const UnityComponent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media only screen and (max-width: 570px) {
+    & > button {
+      display: none;
+    }
+  }
 `;
 
 export const NoteContainer = styled.div`
