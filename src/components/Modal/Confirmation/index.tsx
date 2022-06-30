@@ -3,11 +3,11 @@ import * as C from '../styles';
 
 import ImgApp from '../../../assets/coeln-app-icon.png';
 
-interface ConfirmationModalProps {
+export interface ConfirmationModalProps {
   onConfirm: () => void;
   onCancel: () => void;
   title?: string;
-  message: string;
+  message?: string;
 }
 
 function ConfirmationModal({

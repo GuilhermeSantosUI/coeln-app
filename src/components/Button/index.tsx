@@ -11,12 +11,19 @@ function Button({
   loading,
   children,
   size = 'small',
-  colorStyle = 'tined',
+  colorStyle = 'plain',
   ...rest
 }: ButtonProps) {
   return (
     <C.Container type="button" size={size} colorStyle={colorStyle} {...rest}>
-      {children}
+      {loading ? (
+        <>
+          <C.Loader />
+          <p>Carregando...</p>
+        </>
+      ) : (
+        children
+      )}
     </C.Container>
   );
 }

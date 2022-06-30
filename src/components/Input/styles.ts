@@ -12,3 +12,7 @@ export const Container = styled.input`
   border: 1px solid #dadada;
   border-radius: 14px;
 `;
+
+export const ErrorMessage = styled.p`
+  color: red;
+`;

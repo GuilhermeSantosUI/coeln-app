@@ -22,10 +22,38 @@ export default {
   },
 } as ComponentMeta<typeof Button>;
 
-export function Primary(args: Story<ButtonProps>) {
+export function Small(args: Story<ButtonProps>) {
   return (
     <Button loading={false} {...args}>
       Olá, mundo!
     </Button>
   );
 }
+
+Small.args = {
+  size: 'small',
+};
+
+export function Medium(args: Story<ButtonProps>) {
+  return (
+    <Button loading={false} {...args}>
+      Olá, mundo!
+    </Button>
+  );
+}
+
+Medium.args = {
+  size: 'medium',
+};
+
+export function Larger(args: Story<ButtonProps>) {
+  return (
+    <Button loading={false} {...args}>
+      Olá, mundo!
+    </Button>
+  );
+}
+
+Larger.args = {
+  size: 'larger',
+};
