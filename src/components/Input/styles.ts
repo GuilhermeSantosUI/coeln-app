@@ -9,8 +9,12 @@ export const Container = styled.input`
 
   background: #f2f2f2;
 
-  border: 1px solid #dadada;
+  border: 2px solid #dadada;
   border-radius: 14px;
+
+  &:focus {
+    border-color: #328827;
+  }
 `;
 
 export const ErrorMessage = styled.p`
