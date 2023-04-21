@@ -29,6 +29,7 @@
     "import/prefer-default-export": "off",
     "react/jsx-props-no-spreading": "off",
     "react/jsx-no-bind": "off",
+    "import/no-unresolved": "off",
     "react/require-default-props": "off",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "no-param-reassign": "off"
