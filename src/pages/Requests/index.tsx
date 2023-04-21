@@ -1,21 +1,23 @@
-import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { FiArrowRight, FiPlus, FiUser } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
-import { SearchBar, Separator } from '../../components/BasePage';
-import HeaderSection from '../../components/BasePage/HeaderSection';
-import { HeaderSeparator } from '../../components/BasePage/HeaderSection/styles';
+import moment from 'moment';
+
+import { SearchBar, Separator } from '@/components/BasePage';
+import HeaderSection from '@/components/BasePage/HeaderSection';
+import { HeaderSeparator } from '@/components/BasePage/HeaderSection/styles';
 import {
   AvatarContainer,
   ListContainer,
   RightSeparator,
   Subtitle,
   Title,
-} from '../../components/BasePage/ListComponents';
-import Button from '../../components/Button';
-import OptionButton from '../../components/OptionButton';
-import handleRandomAvatar from '../../components/RandomImage';
-import api from '../../services/api';
+} from '@/components/BasePage/ListComponents';
+
+import Button from '@/components/Button';
+import api from '@/services/api';
+import OptionButton from '@/components/OptionButton';
+import handleRandomAvatar from '@/components/RandomImage';
 import { SectionContainer } from '../MainPage/styles';
 
 function Requests() {
