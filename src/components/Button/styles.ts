@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { shade } from 'polished';
+import { spin } from '../BasePage';
 
 interface ContainerProps {
   size?: 'larger' | 'medium' | 'small';
@@ -54,8 +55,22 @@ const buttonSizeVariations = {
 };
 
 export const Container = styled.button<ContainerProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
   transition: background 0.2s;
 
   ${(props) => buttonSizeVariations[props.size || 'small']}
   ${(props) => buttonStyleVariations[props.colorStyle || 'filled']}
+`;
+
+export const Loader = styled.div`
+  width: 18px;
+  height: 18px;
+  border: 0.12em solid rgba(0, 0, 0, 0.1);
+  border-top: 0.12em solid var(--gray-100);
+  border-radius: 50%;
+  animation: ${spin} 0.6s linear infinite;
 `;

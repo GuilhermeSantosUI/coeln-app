@@ -32,10 +32,11 @@ export const TouchArea = styled.button`
   background-color: transparent;
   cursor: auto;
 
-  display: flex;
+  display: none;
   align-items: center;
 
   @media screen and (max-width: 570px) {
+    display: flex;
     cursor: pointer;
   }
 `;
