@@ -75,3 +75,9 @@ export const AsideHeader = styled.header`
 
   animation: ${appearFromTop} 1s;
 `;
+
+export const SkeletonContainer = styled.div`
+  display: flex;
+  flex-flow: column;
+  
+`

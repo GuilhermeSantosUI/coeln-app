@@ -26,6 +26,7 @@ import handleRandomAvatar from '../../components/RandomImage';
 import Goback from '../../components/Sidebar/Goback';
 import api from '../../services/api';
 import { FlowSection, SectionContainer } from '../MainPage/styles';
+import { SkeletonItem } from '../../components/Skeleton';
 import dataRequestPlugin from '../Requests/Plugins/data-request-plugin';
 
 import * as C from './styles';
@@ -33,11 +34,16 @@ import * as C from './styles';
 function Students() {
   const navigate = useNavigate();
   const [students, setStudents] = useState<any[]>([]);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     (async function handleGet() {
+      setLoading(true);
+
       const { data } = await api.get('/alunos');
       setStudents(data);
+
+      setLoading(false);
     })();
   }, []);
 
@@ -66,32 +72,60 @@ function Students() {
                 </HeaderSeparator>
               </HeaderSection>
 
-              {students.map((student) => (
-                <ListContainer
-                  key={student?.matricula}
-                  onClick={() => navigate(`/student/${student?.matricula}`)}>
-                  <AvatarContainer>
-                    {handleRandomAvatar()}
+              {isLoading ? (
+                <C.SkeletonContainer>
+                  <SkeletonItem
+                    width="100%"
+                    height="70px"
+                    style={{ border: '1px solid #ffffff' }}
+                  />
 
-                    <Separator>
-                      <Subtitle>Matricula: {student?.matricula}</Subtitle>
-                      <Title>{student.nome}</Title>
-                    </Separator>
-                  </AvatarContainer>
+                  <SkeletonItem
+                    width="100%"
+                    height="70px"
+                    style={{ border: '1px solid #ffffff' }}
+                  />
 
-                  <RightSeparator>
-                    <Button loading={false} colorStyle="tined" size="small">
-                      {student?.turma.nome}
-                    </Button>
+                  <SkeletonItem
+                    width="100%"
+                    height="70px"
+                    style={{ border: '1px solid #ffffff' }}
+                  />
 
-                    <FiArrowRight size={20} color="#8c8c8c" />
+                  <SkeletonItem
+                    width="100%"
+                    height="70px"
+                    style={{ border: '1px solid #ffffff' }}
+                  />
+                </C.SkeletonContainer>
+              ) : (
+                students.map((student) => (
+                  <ListContainer
+                    key={student?.matricula}
+                    onClick={() => navigate(`/student/${student?.matricula}`)}>
+                    <AvatarContainer>
+                      {handleRandomAvatar()}
 
-                    <Button loading={false} colorStyle="filled" size="small">
-                      {student?.curso.nome}
-                    </Button>
-                  </RightSeparator>
-                </ListContainer>
-              ))}
+                      <Separator>
+                        <Subtitle>Matricula: {student?.matricula}</Subtitle>
+                        <Title>{student.nome}</Title>
+                      </Separator>
+                    </AvatarContainer>
+
+                    <RightSeparator>
+                      <Button loading={false} colorStyle="tined" size="small">
+                        {student?.turma.nome}
+                      </Button>
+
+                      <FiArrowRight size={20} color="#8c8c8c" />
+
+                      <Button loading={false} colorStyle="filled" size="small">
+                        {student?.curso.nome}
+                      </Button>
+                    </RightSeparator>
+                  </ListContainer>
+                ))
+              )}
             </SectionContainer>
           </Section>
 
