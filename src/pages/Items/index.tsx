@@ -17,16 +17,21 @@ import api from '../../services/api';
 
 import * as C from '../MainPage/styles';
 import { UnityComponent } from './styles';
+import { SkeletonItem } from '@/components/Skeleton';
 
 function Items() {
   const navigate = useNavigate();
-
   const [items, setItems] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     (async function handleGet() {
+      setIsLoading(true);
+
       const { data } = await api.get('/itens');
       setItems(data);
+
+      setIsLoading(false);
     })();
   }, []);
 
@@ -46,32 +51,60 @@ function Items() {
         </HeaderSeparator>
       </HeaderSection>
 
-      {items.map((item) => (
-        <ListContainer
-          key={item.id}
-          onClick={() => navigate(`/item/${item.id}`)}>
-          <AvatarContainer>
-            {handleRandomAvatar()}
+      {isLoading ? (
+        <C.SkeletonContainer>
+          <SkeletonItem
+            width="100%"
+            height="70px"
+            style={{ border: '1px solid #ffffff' }}
+          />
 
-            <Separator>
-              <Subtitle>{item.quantidade} unidades.</Subtitle>
-              <Title>{item.componente.nome}</Title>
-            </Separator>
-          </AvatarContainer>
+          <SkeletonItem
+            width="100%"
+            height="70px"
+            style={{ border: '1px solid #ffffff' }}
+          />
 
-          <UnityComponent>
-            <Separator>
-              <Button loading={false} colorStyle="tined" size="small">
-                Laboratório: {item.organizador.laboratorio.id}
-              </Button>
-            </Separator>
+          <SkeletonItem
+            width="100%"
+            height="70px"
+            style={{ border: '1px solid #ffffff' }}
+          />
 
-            <OptionButton>
-              <FiArrowRight size={20} color="#8c8c8c" />
-            </OptionButton>
-          </UnityComponent>
-        </ListContainer>
-      ))}
+          <SkeletonItem
+            width="100%"
+            height="70px"
+            style={{ border: '1px solid #ffffff' }}
+          />
+        </C.SkeletonContainer>
+      ) : (
+        items.map((item) => (
+          <ListContainer
+            key={item.id}
+            onClick={() => navigate(`/item/${item.id}`)}>
+            <AvatarContainer>
+              {handleRandomAvatar()}
+
+              <Separator>
+                <Subtitle>{item.quantidade} unidades.</Subtitle>
+                <Title>{item.componente.nome}</Title>
+              </Separator>
+            </AvatarContainer>
+
+            <UnityComponent>
+              <Separator>
+                <Button loading={false} colorStyle="tined" size="small">
+                  Laboratório: {item.organizador.laboratorio.id}
+                </Button>
+              </Separator>
+
+              <OptionButton>
+                <FiArrowRight size={20} color="#8c8c8c" />
+              </OptionButton>
+            </UnityComponent>
+          </ListContainer>
+        ))
+      )}
     </C.SectionContainer>
   );
 }

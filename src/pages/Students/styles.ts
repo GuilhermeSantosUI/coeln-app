@@ -79,5 +79,4 @@ export const AsideHeader = styled.header`
 export const SkeletonContainer = styled.div`
   display: flex;
   flex-flow: column;
-  
-`
+`;

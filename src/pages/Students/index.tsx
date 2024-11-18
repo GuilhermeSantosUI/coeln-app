@@ -34,16 +34,16 @@ import * as C from './styles';
 function Students() {
   const navigate = useNavigate();
   const [students, setStudents] = useState<any[]>([]);
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     (async function handleGet() {
-      setLoading(true);
+      setIsLoading(true);
 
       const { data } = await api.get('/alunos');
       setStudents(data);
 
-      setLoading(false);
+      setIsLoading(false);
     })();
   }, []);
 

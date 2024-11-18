@@ -72,3 +72,8 @@ export const Subtitle = styled.p`
 
   color: #8c8c8c;
 `;
+
+export const SkeletonContainer = styled.div`
+  display: flex;
+  flex-flow: column;
+`;
